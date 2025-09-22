@@ -29,7 +29,7 @@ class LandingPage extends StatelessWidget {
         leading: Icon(Icons.person),
         title: Text('Archit Kumar'),
       ),
-      body: Column(
+      body: ListView(
         children: [
           ConstrainedBox(
             constraints: BoxConstraints(maxHeight: 250),
@@ -42,7 +42,9 @@ class LandingPage extends StatelessWidget {
           ),
           IntrinsicHeight(
             child: Container(
-              decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black),
+              ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -68,6 +70,8 @@ class LandingPage extends StatelessWidget {
               ),
             ),
           ),
+          ReviewBlock(),
+          CopyrightBlock(),
         ],
       ),
     );
@@ -263,6 +267,87 @@ class QualificationBlock extends StatelessWidget {
         Text('• '),
         Expanded(child: Text(text)),
       ],
+    );
+  }
+}
+
+class ReviewBlock extends StatelessWidget {
+  const ReviewBlock({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(16.0),
+      child: Column(
+        spacing: 16.0,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'Reviews from my teacher',
+            style: TextTheme.of(context).titleLarge,
+          ),
+          Row(
+            spacing: 16,
+            children: [
+              Expanded(
+                child: _reviewCard(
+                  'Dude built some cool algorithms',
+                  'Mr. Sharma',
+                ),
+              ),
+              Expanded(
+                child: _reviewCard(
+                  'He blew up the database schema',
+                  'Mr. Mishra',
+                ),
+              ),
+              Expanded(
+                child: _reviewCard(
+                  "Never saw a student like him since the good old '90s",
+                  'Mr. Schlansky',
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _reviewCard(String review, String reviewer) {
+    return Card(
+      child: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          spacing: 8.0,
+          children: [
+            Text(
+              review,
+              style: TextStyle(fontStyle: FontStyle.italic),
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Text(
+                '- $reviewer',
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class CopyrightBlock extends StatelessWidget {
+  const CopyrightBlock({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text('© All rights reserved 2025'),
     );
   }
 }
