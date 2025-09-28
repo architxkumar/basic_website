@@ -347,7 +347,7 @@ class CopyrightBlock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('© All rights reserved 2025'),
+      child: Text('© All rights reserved  2025'),
     );
   }
 }
